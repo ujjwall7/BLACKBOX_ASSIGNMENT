@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload JSON</title>
+</head>
+<body>
+    <h1>Upload JSON File</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="json_file">
+        <button type="submit">Upload</button>
+    </form>
+    {% if success %}
+        <p>Data uploaded successfully.</p>
+    {% endif %}
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>
