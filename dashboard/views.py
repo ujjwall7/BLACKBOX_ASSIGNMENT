@@ -70,8 +70,42 @@ class UploadJsonView(View):
         except ValueError:
             return None
 
+def dashboard(request):
+    data = EnergyOutlook.objects.all()
 
+    end_year_filter = request.GET.get('end_year')
+    if end_year_filter:
+        data = data.filter(end_year=end_year_filter)
 
+    topic_filter = request.GET.get('topic')
+    if topic_filter:
+        data = data.filter(topic=topic_filter)
+
+    sector_filter = request.GET.get('sector')
+    if sector_filter:
+        data = data.filter(sector=sector_filter)
+
+    region_filter = request.GET.get('region')
+    if region_filter:
+        data = data.filter(region=region_filter)
+
+    pest_filter = request.GET.get('pest')
+    if pest_filter:
+        data = data.filter(pestle=pest_filter)
+
+    source_filter = request.GET.get('source')
+    if source_filter:
+        data = data.filter(source=source_filter)
+
+    swot_filter = request.GET.get('swot')
+    if swot_filter:
+        data = data.filter(swot=swot_filter)
+
+    country_filter = request.GET.get('country')
+    if country_filter:
+        data = data.filter(country=country_filter)
+        
+    return render(request, "dashboard.html", {'data': data})
 
 
 
